@@ -1,9 +1,9 @@
 {
-  "name":"Kinoko Map Japan",
-  "short_name":"Kinoko Map",
-  "start_url":"./",
-  "display":"standalone",
-  "background_color":"#f7f5ee",
-  "theme_color":"#173d2c",
-  "description":"东京周边蘑菇生态适生度地图原型"
+  "name": "Japan Environmental Atlas",
+  "short_name": "Japan Atlas",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f5ee",
+  "theme_color": "#173d2c",
+  "description": "日本自然環境アトラス：全国の地形・植生・地質を重ねて探索する環境地図。"
 }

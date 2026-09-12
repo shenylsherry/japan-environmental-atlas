@@ -26,7 +26,7 @@ occurs in this module. Browser and Python implementations are tested independent
    TPI = center elevation − local mean and standardized TPI = TPI/local SD. Include
    the center. A nearly constant window (SD<0.01 m) gets standardized TPI=0.
    Require ≥95% valid pixels in each window. Actual windows round to integer pixels;
-   these scales are configurable geometry settings, not matsutake ecological claims.
+   these scales are configurable geometry settings, not ecological thresholds.
 7. Provisional terrain classes in precedence order: ridge if large standardized
    TPI>1 and small>0.5; valley if large<−1 and small<−0.5; upper convex slope if
    large>0.35, small>0 and profile curvature>0; lower concave slope uses opposite signs;
@@ -37,7 +37,7 @@ occurs in this module. Browser and Python implementations are tested independent
 [Weiss TPI poster](https://www.jennessent.com/arcview/TPI_Weiss_poster.htm) motivates
 multiscale position rather than curvature-only ridge detection. The exact scales,
 thresholds and class rules above are this project's provisional variant; they are not
-a validated reproduction of Weiss or an empirical matsutake habitat model.
+a validated reproduction of Weiss or an empirical habitat model.
 [GDAL aspect documentation](https://gdal.org/en/stable/programs/gdal_raster_aspect.html)
 provides the conventional downhill azimuth and Horn gradient reference.
 

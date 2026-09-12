@@ -5,7 +5,21 @@ Site identity and Git history are preserved. Initial Git commit: 439d72b. There 
 uncommitted vegetation corrections before this work; they are preserved in history.
 No AGENTS.md, package manager, package manifest, API, CI, tests, backend or Git remote
 was present. Connected GitHub repository search and listing returned no repositories;
-GitHub synchronization is **not established**. Do not invent a GitHub owner or URL.
+GitHub synchronization was not established at that audit checkpoint.
+
+## Current product scope
+
+The current product is **Japan Environmental Atlas / 日本自然環境アトラス**,
+a general-purpose map viewer for layered terrain, vegetation and geology exploration.
+Canonical GitHub repository: https://github.com/shenylsherry/japan-environmental-atlas.
+The earlier audit below records conditions before GitHub publication; that historical
+access blocker has been resolved. The existing public Site identity and URL remain.
+
+Core responsibilities: authoritative data transport, tiled rendering, point queries,
+continuous derived environmental variables and future general environmental filters.
+Species-specific or other purpose-specific interpretations belong to optional profiles,
+not the application identity or GIS calculations. The inherited larch-name preset is
+retained in a separate optional UI section. See [product scope](product-scope.md).
 
 ## Existing architecture
 Authored static `dist/index.html`, `dist/app.js`, vendored MapLibre GL JS 4.7.1.

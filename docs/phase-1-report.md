@@ -26,7 +26,8 @@
    map-click integration and physical iPhone usability remain unverified. Manual
    contour checks and field truth are outstanding. Pipeline is regionally resumable,
    but no national precomputed environmental-analysis store has been generated.
-   GitHub connector exposes no repositories; GitHub synchronization is not established.
+   At the original audit, GitHub exposed no repositories. This access issue was later resolved;
+   current code is published in shenylsherry/japan-environmental-atlas.
 8. Next gate: complete Phase 1 GPU/device/contour checks before Phase 2. Then build
    a common-grid, server-side AND filter producing candidate tiles with explicit
    nodata/coverage. Species config, weights and JMA/thermal inference remain later work.

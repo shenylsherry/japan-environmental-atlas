@@ -1,18 +1,27 @@
-# Kinoko Map Japan
+# Japan Environmental Atlas
 
-> Published to GitHub on 2026-09-12. Live public map: https://kinoko-map-japan.workspace-828684.chatgpt.site/
+**日本自然環境アトラス · 日本自然环境地图集**
+
+[Public map](https://kinoko-map-japan.workspace-828684.chatgpt.site/) · [GitHub](https://github.com/shenylsherry/japan-environmental-atlas)
+
+> First GitHub publication: 2026-09-12; project subsequently renamed from Kinoko Map Japan.
 > This application snapshot comes from source commit `ff8fa332b1eda13705659d71ed22414657db8dc9`. The repository retains its existing MIT LICENSE and initial commit. Original development history remains in the existing Site source repository; the audit and phase reports below describe the earlier implementation checkpoints, including the former GitHub access limitation.
 
-Japan-wide environmental GIS for inspecting vegetation, bedrock and DEM-derived
-terrain. This is an in-place upgrade of the existing Kinoko Map; MapLibre and its
-framework-free JavaScript UI are retained. **No matsutake occurrence probability or
-habitat score is calculated.**
+A general-purpose atlas for exploring Japan's terrain, vegetation and geology together.
+Use independent layer visibility, ordering, opacity and point inspection for nature
+observation, hiking preparation, ecological surveys and geography learning.
 
-Phase 0 audit and Phase 1 implementation are included. Phase 1 acceptance is pending
-full WebGL map rendering and real iPhone verification; see [validation](docs/validation.md).
-Phases 2–4 (complete environmental intersections, JMA weather, species scoring) are
-not advertised as implemented. Existing vegetation-name filters and the larch host
-preset are preserved and are clearly distinct from complete spatial filtering.
+The core platform provides environmental information, not a species prediction.
+Authoritative source attributes remain separate from DEM-derived variables and from
+any future purpose-specific interpretation. The inherited larch-name filter is kept
+under **专题预设（可选）**, outside the main vegetation controls; it is an example
+filter, not a mushroom distribution or habitat model.
+
+Implemented: nationwide tiled browsing, layer controls, original attribute inspection,
+DEM derivatives and reproducible regional preprocessing. Full AND spatial intersections,
+JMA weather and optional habitat profiles remain future work. Phase 1 acceptance still
+requires full WebGL map rendering and physical iPhone verification; see
+[validation](docs/validation.md) and [product scope](docs/product-scope.md).
 
 ## Architecture
 
@@ -34,6 +43,8 @@ Node ≥24.5 (includes environment-proxy support); npm. Python ≥3.10 for optio
 preprocessing. A WebGL-capable browser is required for the interactive map.
 
 ```bash
+git clone https://github.com/shenylsherry/japan-environmental-atlas.git
+cd japan-environmental-atlas
 npm ci
 npm run dev -- --host 0.0.0.0 --port 5173
 ```
@@ -80,10 +91,10 @@ resuming skips only hash-valid outputs. Regional batches are capped by default. 
 ## Test and build
 
 ```bash
+npm run build
 npm test
 npm run test:terrain
 python3 verify-data.py
-npm run build
 node --use-env-proxy scripts/smoke-sources.mjs
 python3 scripts/terrain/validate_locations.py
 ```
@@ -118,16 +129,18 @@ hosting restrictions):
 KINOKO_SITE_ORIGIN=https://kinoko-map-japan.workspace-828684.chatgpt.site node --use-env-proxy scripts/smoke-sources.mjs
 ```
 
-For this owner-private Site, provide its authorized access token as the process
-environment variable `KINOKO_SITE_TOKEN`; never save it in Git. The check sends it
-only to that origin, does not follow redirects, and prints no credentials. All seven
+The live Site is public and needs no access token. For a separately configured private
+Site, `KINOKO_SITE_TOKEN` accepts its authorized access token; never save it in Git.
+The check sends it only to the configured origin, does not follow redirects, and
+prints no credentials. All seven
 routes must return valid PNG/JPEG, decodable vegetation PBF or GSJ legend JSON.
 The Worker uses HTTP response caching without requesting the restricted default cache.
 
-The repository initially had no Git remote. Connected GitHub listing/search exposed
-no repositories. **GitHub synchronization is not established.** The existing Site's
-source repository is separate from GitHub; no GitHub owner or successful GitHub push
-is inferred. `.github/workflows/ci.yml` is ready for a connected GitHub repository.
+The canonical repository is [shenylsherry/japan-environmental-atlas](https://github.com/shenylsherry/japan-environmental-atlas).
+GitHub Actions runs the build, JavaScript/Python tests and historical data-hash checks.
+Sites hosting is managed separately; a GitHub commit alone does not deploy the app.
+The existing public URL is retained. Legacy `KINOKO_*` diagnostic environment variables,
+local layer-preference keys and old-cache cleanup prefixes remain compatible.
 
 ## Limitations
 
