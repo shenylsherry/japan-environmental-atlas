@@ -1,6 +1,6 @@
 # Japan Environmental Atlas
 
-**日本自然環境アトラス · 日本自然环境地图集**
+**日本自然環境アトラス**
 
 [Public map](https://kinoko-map-japan.workspace-828684.chatgpt.site/) · [GitHub](https://github.com/shenylsherry/japan-environmental-atlas)
 
@@ -13,9 +13,7 @@ observation, hiking preparation, ecological surveys and geography learning.
 
 The core platform provides environmental information, not a species prediction.
 Authoritative source attributes remain separate from DEM-derived variables and from
-any future purpose-specific interpretation. The inherited larch-name filter is kept
-under **专题预设（可选）**, outside the main vegetation controls; it is an example
-filter, not a mushroom distribution or habitat model.
+any future purpose-specific interpretation. 
 
 Implemented: nationwide tiled browsing, layer controls, original attribute inspection,
 DEM derivatives and reproducible regional preprocessing. Full AND spatial intersections,
