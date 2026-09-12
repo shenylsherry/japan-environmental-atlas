@@ -1,0 +1,11 @@
+import {createTerrainClient} from './gis/terrain-client.mjs';
+import {lonLatToPixel} from './gis/coordinates.mjs';
+const client=createTerrainClient(),results=document.getElementById('results');
+async function inspect(lat){results.textContent='正在读取官方数据…';const lon=138.728,start=performance.now();
+ const tasks=await Promise.allSettled([client.request('point',{lon,lat}),client.request('vegetation',{lon,lat}),fetch(`/api/geology?lat=${lat}&lon=${lon}`).then(async r=>{if(!r.ok)throw Error(`HTTP ${r.status}`);return {mode:r.headers.get('X-Kinoko-Validation-Fixture')?'pinned official fixture (development only)':'live official source',data:await r.json()};})]);
+ results.textContent=JSON.stringify({location:[lat,lon],elapsedMs:Math.round(performance.now()-start),results:tasks.map((t,i)=>({source:['terrain','vegetation','geology'][i],status:t.status,value:t.value,error:t.reason?.message}))},null,2);
+}
+document.getElementById('run').onclick=()=>inspect(35.393);
+document.getElementById('south').onclick=()=>inspect(35.329);
+document.getElementById('render').onclick=async()=>{results.textContent='正在生成地形瓦片…';const [px,py]=lonLatToPixel(138.728,35.393,14),x=Math.floor(px/256),y=Math.floor(py/256),stats=[];const box=document.getElementById('tiles');box.replaceChildren();for(const kind of ['elevation','slope','aspect','curvature','terrain']){try{const start=performance.now(),data=await client.request('tile',{kind,z:14,x,y});const image=await createImageBitmap(new Blob([data],{type:'image/png'}));const card=document.createElement('div');card.className='card';const p=document.createElement('p');p.textContent=kind;const canvas=document.createElement('canvas');canvas.width=canvas.height=256;canvas.getContext('2d').drawImage(image,0,0);image.close();const rgba=canvas.getContext('2d').getImageData(0,0,256,256).data;let valid=0;for(let i=3;i<rgba.length;i+=4)if(rgba[i])valid++;card.append(p,canvas);box.append(card);stats.push({kind,validPixels:valid,bytes:data.byteLength,ms:Math.round(performance.now()-start)});}catch(e){stats.push({kind,error:e.message});}}results.textContent=JSON.stringify(stats,null,2);};
+document.getElementById('mobile').onclick=()=>{const frame=document.getElementById('phone');frame.hidden=false;frame.src='./index.html';};

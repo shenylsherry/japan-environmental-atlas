@@ -1,0 +1,188 @@
+{
+  "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector",
+  "retrieved_at": "2026-09-06T20:10:07.830570+00:00",
+  "bounds": [
+    139.0869140625,
+    35.56798045801208,
+    139.306640625,
+    35.7465122599185
+  ],
+  "zoom": 13,
+  "tiles": [
+    {
+      "x": 7261,
+      "y": 3224,
+      "bytes": 46416,
+      "sha256": "34d2823f1eb4078469d0ce3ab3d19a6ccadfe561058ef47927b8ba17aff6304c",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7261/3224.pbf"
+    },
+    {
+      "x": 7261,
+      "y": 3225,
+      "bytes": 37107,
+      "sha256": "62375fe13401635e0cdc97b1ecfd3766fe427e8ab9b2d6d1301075b8575a4654",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7261/3225.pbf"
+    },
+    {
+      "x": 7261,
+      "y": 3226,
+      "bytes": 53511,
+      "sha256": "16d1e8cb723719dbec57079b7d2dfcc9104d3dfa8a5247bcdf2c1ce5e42d7a2a",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7261/3226.pbf"
+    },
+    {
+      "x": 7261,
+      "y": 3227,
+      "bytes": 59257,
+      "sha256": "68c5a1352eff5fd60f8b2f43a76439f3c6a49d16a00ebdb52519cfda684e261f",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7261/3227.pbf"
+    },
+    {
+      "x": 7261,
+      "y": 3228,
+      "bytes": 42904,
+      "sha256": "da414d8f6359c2fdfc7d4211ebeb47e255d6fb56b3cf7ce06ccd68fce3d65422",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7261/3228.pbf"
+    },
+    {
+      "x": 7262,
+      "y": 3224,
+      "bytes": 43822,
+      "sha256": "c358c5c7a80a93fb89fbe5a09ab07fbf5e413b6206627d7490d52c2cbb34de96",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7262/3224.pbf"
+    },
+    {
+      "x": 7262,
+      "y": 3225,
+      "bytes": 40929,
+      "sha256": "380d9cb8bbe8b33b24a487b0d444e29334a80647e34c043337569086fcbcdac2",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7262/3225.pbf"
+    },
+    {
+      "x": 7262,
+      "y": 3226,
+      "bytes": 27105,
+      "sha256": "0849cfa6e93e0ce417b44c351a53576aafcac2ecfe98ce9e2234bba8d7efa1d5",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7262/3226.pbf"
+    },
+    {
+      "x": 7262,
+      "y": 3227,
+      "bytes": 38153,
+      "sha256": "f261f9f9736917c4d9b4b7b83224666bb2c5c6e2cb63c082131f461307ae6175",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7262/3227.pbf"
+    },
+    {
+      "x": 7262,
+      "y": 3228,
+      "bytes": 36132,
+      "sha256": "3767dfe20905d4be3cc767e692041748917a9cdde3a78f50aa9ce14863d043e4",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7262/3228.pbf"
+    },
+    {
+      "x": 7263,
+      "y": 3224,
+      "bytes": 48649,
+      "sha256": "ef8273ba5aebbfd4648aa52b5809b1698bbded1abd8518d27a03631d297a6e41",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7263/3224.pbf"
+    },
+    {
+      "x": 7263,
+      "y": 3225,
+      "bytes": 43915,
+      "sha256": "d42582f1fc77ec09d9866734b48ad268327a6cbc5f13763310eb723a7f9f0637",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7263/3225.pbf"
+    },
+    {
+      "x": 7263,
+      "y": 3226,
+      "bytes": 16052,
+      "sha256": "3be46f8ace1cbbada72934c93d8ebf8f10b079e6a6b71cdca23a16149fc92c97",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7263/3226.pbf"
+    },
+    {
+      "x": 7263,
+      "y": 3227,
+      "bytes": 23254,
+      "sha256": "1f58781a49487058ea0cc56f57a8300c578f50c060a877bb2047a0bfc5981f71",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7263/3227.pbf"
+    },
+    {
+      "x": 7263,
+      "y": 3228,
+      "bytes": 27684,
+      "sha256": "60aa3cc1e7ceae29e5069c3fb8cd166ca7449824b11e0228c5fc3e100d5fa418",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7263/3228.pbf"
+    },
+    {
+      "x": 7264,
+      "y": 3224,
+      "bytes": 69201,
+      "sha256": "c197234e3f621fff63c787635af7abe394b23298107ff480558b17966a7131c6",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7264/3224.pbf"
+    },
+    {
+      "x": 7264,
+      "y": 3225,
+      "bytes": 60697,
+      "sha256": "153c75358b19f662c42f82e538b2555717b92b5ffefb32dfc34cfda865042186",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7264/3225.pbf"
+    },
+    {
+      "x": 7264,
+      "y": 3226,
+      "bytes": 40084,
+      "sha256": "f08a77d0a93b1217556c6b38a6bb3591da4f7c4a322111d9bf3b06bd27fe6798",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7264/3226.pbf"
+    },
+    {
+      "x": 7264,
+      "y": 3227,
+      "bytes": 34210,
+      "sha256": "4b7ca6296066577c8f29e2f0ee6b0d34de76d0e80b8687ea889abe611c40ba9b",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7264/3227.pbf"
+    },
+    {
+      "x": 7264,
+      "y": 3228,
+      "bytes": 43099,
+      "sha256": "682397f143737b4c9bcc001978aed846446a24c7c1f1d883bfe842297ed46714",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7264/3228.pbf"
+    },
+    {
+      "x": 7265,
+      "y": 3224,
+      "bytes": 45314,
+      "sha256": "78fbfa4cf46ed43b2f4c170fc84bd3241cbca987df5ff51026fe7e34dcb77783",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7265/3224.pbf"
+    },
+    {
+      "x": 7265,
+      "y": 3225,
+      "bytes": 57601,
+      "sha256": "9dbdc42d84a21127fce37484b976a34fadbd140d513041ec5bc4a7631949c945",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7265/3225.pbf"
+    },
+    {
+      "x": 7265,
+      "y": 3226,
+      "bytes": 41211,
+      "sha256": "db303d75e719e1b0cd5fa952fa3303896f49c4f96f71d78d29e7f366fe8901c5",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7265/3226.pbf"
+    },
+    {
+      "x": 7265,
+      "y": 3227,
+      "bytes": 51015,
+      "sha256": "3be59b62e87234a35a05a341fb6e8de771f41ff69d4353549f9d3724ee2dda42",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7265/3227.pbf"
+    },
+    {
+      "x": 7265,
+      "y": 3228,
+      "bytes": 53437,
+      "sha256": "c45a784140c1e7b6bdf1a738837c6b16ce8c9cda0edb39c3f936ab6d7d9b3bf3",
+      "source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/13/7265/3228.pbf"
+    }
+  ]
+}

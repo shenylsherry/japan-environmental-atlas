@@ -1,0 +1,408 @@
+[
+  {
+    "name": "fuji_n",
+    "lat": 35.393,
+    "lon": 138.728,
+    "terrain": {
+      "elevation": 2303.35009765625,
+      "slope": 27.463388442993164,
+      "aspect": 335.07275390625,
+      "curvature": 0.0095696821808815,
+      "profileCurvature": 0.002668775850906968,
+      "planCurvature": 0.011061799712479115,
+      "tpiSmall": 5.101045608520508,
+      "tpiLarge": 2.8329877853393555,
+      "tpiSmallZ": 0.25819331407546997,
+      "tpiLargeZ": 0.0366390198469162,
+      "terrain": 3.0
+    },
+    "algorithm": "terrain-1.0.0",
+    "gsi_dem_value": 2303.35009765625,
+    "gsi_source": {
+      "source": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/14/14505/6467.png",
+      "sha256": "7fc85f9c50756247b3cde5fbf7f6017e72422bca6b3a920f886706c2fcc505fb",
+      "retrieved_at": "2026-09-12T01:37:52.545218+00:00"
+    },
+    "elevation_agreement": true,
+    "height_100m": {
+      "north": 2261.8798828125,
+      "south": 2337.0,
+      "east": 2310.199951171875,
+      "west": 2288.85009765625
+    },
+    "geology_source": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/legend.json?point=35.393,138.728",
+    "geology": {
+      "title": "新生代 第四紀 完新世,玄武岩 溶岩・火砕岩",
+      "symbol": "H_vbs_al",
+      "value": "70658f",
+      "r": 112,
+      "g": 101,
+      "b": 143,
+      "formationAge_ja": "新生代 第四紀 完新世",
+      "formationAge_en": "Cenozoic Quaternary Holocene",
+      "group_ja": "火成岩",
+      "group_en": "Igneous rocks",
+      "lithology_ja": "玄武岩 溶岩・火砕岩",
+      "lithology_en": "basalt lava & pyroclastic rocks"
+    },
+    "vegetation": [
+      {
+        "凡例コード": "050102",
+        "凡例名": "シラビソ－オオシラビソ群集",
+        "植生自然度": "9",
+        "植生自然度区分": "自然林",
+        "植生区分": "コケモモ－トウヒクラス域自然植生",
+        "作成年度": "2004"
+      }
+    ],
+    "vegetation_source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/15/29011/12935.pbf"
+  },
+  {
+    "name": "fuji_s",
+    "lat": 35.329,
+    "lon": 138.728,
+    "terrain": {
+      "elevation": 1983.9100341796875,
+      "slope": 13.607131004333496,
+      "aspect": 200.59666442871094,
+      "curvature": -0.0009863905142992735,
+      "profileCurvature": -0.0001860824995674193,
+      "planCurvature": -0.003237732220441103,
+      "tpiSmall": 0.48985350131988525,
+      "tpiLarge": 6.582846641540527,
+      "tpiSmallZ": 0.028607627376914024,
+      "tpiLargeZ": 0.08803168684244156,
+      "terrain": 3.0
+    },
+    "algorithm": "terrain-1.0.0",
+    "gsi_dem_value": 1983.9100341796875,
+    "gsi_source": {
+      "source": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/14/14505/6471.png",
+      "sha256": "269769a92a680c06c8510656f757d3cc6f4c8394950ad8ba31219aee16fa60b3",
+      "retrieved_at": "2026-09-12T01:41:03.227799+00:00"
+    },
+    "elevation_agreement": true,
+    "height_100m": {
+      "north": 2009.5,
+      "south": 1945.3299560546875,
+      "east": 2005.6600341796875,
+      "west": 1958.27001953125
+    },
+    "geology_source": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/legend.json?point=35.329,138.728",
+    "geology": {
+      "title": "新生代 第四紀 完新世,玄武岩 溶岩・火砕岩",
+      "symbol": "H_vbs_al",
+      "value": "70658f",
+      "r": 112,
+      "g": 101,
+      "b": 143,
+      "formationAge_ja": "新生代 第四紀 完新世",
+      "formationAge_en": "Cenozoic Quaternary Holocene",
+      "group_ja": "火成岩",
+      "group_en": "Igneous rocks",
+      "lithology_ja": "玄武岩 溶岩・火砕岩",
+      "lithology_en": "basalt lava & pyroclastic rocks"
+    },
+    "vegetation": [
+      {
+        "凡例コード": "080100",
+        "凡例名": "ダケカンバ群落（III）",
+        "植生自然度": "8",
+        "植生自然度区分": "二次林（自然林に近い）",
+        "植生区分": "コケモモ－トウヒクラス域代償植生",
+        "作成年度": "2004"
+      }
+    ],
+    "vegetation_source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/15/29011/12942.pbf"
+  },
+  {
+    "name": "takao",
+    "lat": 35.625,
+    "lon": 139.243,
+    "terrain": {
+      "elevation": 589.8800048828125,
+      "slope": 14.824173927307129,
+      "aspect": 311.8446960449219,
+      "curvature": 0.00878728274255991,
+      "profileCurvature": 0.011726799421012402,
+      "planCurvature": -0.01584271341562271,
+      "tpiSmall": 11.613951683044434,
+      "tpiLarge": 72.0840072631836,
+      "tpiSmallZ": 0.9165669083595276,
+      "tpiLargeZ": 1.6120566129684448,
+      "terrain": 1.0
+    },
+    "algorithm": "terrain-1.0.0",
+    "gsi_dem_value": 589.8800048828125,
+    "gsi_source": {
+      "source": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/14/14529/6454.png",
+      "sha256": "9cb4a1eae1330f161f1989103d54efb5541b9dfa6bc2d63c3639c6df4d1f55b4",
+      "retrieved_at": "2026-09-12T01:41:55.506479+00:00"
+    },
+    "elevation_agreement": true,
+    "height_100m": {
+      "north": 581.97998046875,
+      "south": 564.4099731445312,
+      "east": 583.1900024414062,
+      "west": 554.0599975585938
+    },
+    "geology_source": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/legend.json?point=35.625,139.243",
+    "geology": {
+      "title": "中生代 後期白亜紀 チューロニアン期〜マーストリヒチアン期,海成層 泥岩 後期白亜紀付加体",
+      "symbol": "K212-22_som_K2",
+      "value": "81c3c4",
+      "r": 129,
+      "g": 195,
+      "b": 196,
+      "formationAge_ja": "中生代 後期白亜紀 チューロニアン期〜マーストリヒチアン期",
+      "formationAge_en": "Mesozoic Late Cretaceous Turonian - Maastrichtian",
+      "group_ja": "付加体",
+      "group_en": "Accretionary complexes",
+      "lithology_ja": "海成層 泥岩 後期白亜紀付加体",
+      "lithology_en": "marine mudstone Late Cretaceous accretionary complex"
+    },
+    "vegetation": [
+      {
+        "凡例コード": "410101",
+        "凡例名": "クリ－コナラ群集",
+        "植生自然度": "7",
+        "植生自然度区分": "二次林",
+        "植生区分": "ヤブツバキクラス域代償植生",
+        "作成年度": "2009"
+      }
+    ],
+    "vegetation_source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/15/29058/12909.pbf"
+  },
+  {
+    "name": "daisen",
+    "lat": 35.378,
+    "lon": 133.544,
+    "terrain": {
+      "elevation": 1124.9200439453125,
+      "slope": 16.945228576660156,
+      "aspect": 310.7288818359375,
+      "curvature": -0.0072470069862902164,
+      "profileCurvature": 0.0007797146681696177,
+      "planCurvature": -0.02670876681804657,
+      "tpiSmall": -7.360206127166748,
+      "tpiLarge": -53.661590576171875,
+      "tpiSmallZ": -0.46487754583358765,
+      "tpiLargeZ": -0.6932885646820068,
+      "terrain": 3.0
+    },
+    "algorithm": "terrain-1.0.0",
+    "gsi_dem_value": 1124.9200439453125,
+    "gsi_source": {
+      "source": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/14/14269/6468.png",
+      "sha256": "b9e5f4d88a8c12e0a77e6b4eaa6de2cd4e87386b86738685f509ec03e50b0b67",
+      "retrieved_at": "2026-09-12T01:42:49.142101+00:00"
+    },
+    "elevation_agreement": true,
+    "height_100m": {
+      "north": 1105.02001953125,
+      "south": 1178.47998046875,
+      "east": 1151.9300537109375,
+      "west": 1128.52001953125
+    },
+    "geology_source": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/legend.json?point=35.378,133.544",
+    "geology": {
+      "title": "新生代 第四紀 後期更新世,デイサイト・流紋岩 溶岩・火砕岩",
+      "symbol": "Q3_vas_al",
+      "value": "eb6161",
+      "r": 235,
+      "g": 97,
+      "b": 97,
+      "formationAge_ja": "新生代 第四紀 後期更新世",
+      "formationAge_en": "Cenozoic Quaternary Late Pleistocene",
+      "group_ja": "火成岩",
+      "group_en": "Igneous rocks",
+      "lithology_ja": "デイサイト・流紋岩 溶岩・火砕岩",
+      "lithology_en": "dacite & rhyolite lava & pyroclastic rocks"
+    },
+    "vegetation": [
+      {
+        "凡例コード": "110104",
+        "凡例名": "クロモジ－ブナ群集",
+        "植生自然度": "9",
+        "植生自然度区分": "自然林",
+        "植生区分": "ブナクラス域自然植生",
+        "作成年度": "2009"
+      }
+    ],
+    "vegetation_source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/15/28539/12937.pbf"
+  },
+  {
+    "name": "asahidake",
+    "lat": 43.67,
+    "lon": 142.851,
+    "terrain": {
+      "elevation": 1980.260009765625,
+      "slope": 29.905698776245117,
+      "aspect": 18.65139389038086,
+      "curvature": -0.00041658029658719897,
+      "profileCurvature": -0.0016691136406734586,
+      "planCurvature": 0.00373095297254622,
+      "tpiSmall": -3.618382215499878,
+      "tpiLarge": -1.9532686471939087,
+      "tpiSmallZ": -0.16093029081821442,
+      "tpiLargeZ": -0.022657258436083794,
+      "terrain": 3.0
+    },
+    "algorithm": "terrain-1.0.0",
+    "gsi_dem_value": 1980.260009765625,
+    "gsi_source": {
+      "source": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/14/14693/5978.png",
+      "sha256": "9f0c586b9cdc4f4f360eaa9553ede75bf5c1b996c5cb500ebe0563a735947487",
+      "retrieved_at": "2026-09-12T01:43:43.729162+00:00"
+    },
+    "elevation_agreement": true,
+    "height_100m": {
+      "north": 1943.8299560546875,
+      "south": 2030.77001953125,
+      "east": 1986.8900146484375,
+      "west": 1985.550048828125
+    },
+    "geology_source": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/legend.json?point=43.67,142.851",
+    "geology": {
+      "title": "新生代 第四紀 後期更新世,安山岩・玄武岩質安山岩 溶岩・火砕岩",
+      "symbol": "Q3_vis_al",
+      "value": "d07100",
+      "r": 208,
+      "g": 113,
+      "b": 0,
+      "formationAge_ja": "新生代 第四紀 後期更新世",
+      "formationAge_en": "Cenozoic Quaternary Late Pleistocene",
+      "group_ja": "火成岩",
+      "group_en": "Igneous rocks",
+      "lithology_ja": "安山岩・玄武岩質安山岩 溶岩・火砕岩",
+      "lithology_en": "andesite & basaltic andesite lava & pyroclastic rocks"
+    },
+    "vegetation": [
+      {
+        "凡例コード": "030500",
+        "凡例名": "雪田荒原",
+        "植生自然度": "10",
+        "植生自然度区分": "自然草原",
+        "植生区分": "高山帯自然植生域",
+        "作成年度": "2017"
+      }
+    ],
+    "vegetation_source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/15/29386/11956.pbf"
+  },
+  {
+    "name": "kirishima",
+    "lat": 31.927,
+    "lon": 130.86,
+    "terrain": {
+      "elevation": 1342.5799560546875,
+      "slope": 14.182677268981934,
+      "aspect": 213.25465393066406,
+      "curvature": -0.007757526822388172,
+      "profileCurvature": -0.002633241005241871,
+      "planCurvature": -0.019262786954641342,
+      "tpiSmall": -3.3421735763549805,
+      "tpiLarge": -5.466446399688721,
+      "tpiSmallZ": -0.29868632555007935,
+      "tpiLargeZ": -0.10935056209564209,
+      "terrain": 3.0
+    },
+    "algorithm": "terrain-1.0.0",
+    "gsi_dem_value": 1342.5799560546875,
+    "gsi_source": {
+      "source": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/14/14147/6657.png",
+      "sha256": "692c36746ac420e6ebb85f9345491c4845f567f982747ca87ed90a06faba75e8",
+      "retrieved_at": "2026-09-12T01:44:36.738079+00:00"
+    },
+    "elevation_agreement": true,
+    "height_100m": {
+      "north": 1365.3299560546875,
+      "south": 1320.780029296875,
+      "east": 1347.530029296875,
+      "west": 1341.1300048828125
+    },
+    "geology_source": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/legend.json?point=31.927,130.86",
+    "geology": {
+      "title": "新生代 第四紀 後期更新世,安山岩・玄武岩質安山岩 溶岩・火砕岩",
+      "symbol": "Q3_vis_al",
+      "value": "d07100",
+      "r": 208,
+      "g": 113,
+      "b": 0,
+      "formationAge_ja": "新生代 第四紀 後期更新世",
+      "formationAge_en": "Cenozoic Quaternary Late Pleistocene",
+      "group_ja": "火成岩",
+      "group_en": "Igneous rocks",
+      "lithology_ja": "安山岩・玄武岩質安山岩 溶岩・火砕岩",
+      "lithology_en": "andesite & basaltic andesite lava & pyroclastic rocks"
+    },
+    "vegetation": [
+      {
+        "凡例コード": "130301",
+        "凡例名": "リョウブ－ミズナラ群集",
+        "植生自然度": "9",
+        "植生自然度区分": "自然林",
+        "植生区分": "ブナクラス域自然植生",
+        "作成年度": "2010"
+      }
+    ],
+    "vegetation_source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/15/28295/13314.pbf"
+  },
+  {
+    "name": "yakushima",
+    "lat": 30.336,
+    "lon": 130.505,
+    "terrain": {
+      "elevation": 1916.1500244140625,
+      "slope": 35.75600051879883,
+      "aspect": 29.70581817626953,
+      "curvature": 0.014410849660634995,
+      "profileCurvature": -0.0011138858972117305,
+      "planCurvature": 0.022908110171556473,
+      "tpiSmall": 16.835121154785156,
+      "tpiLarge": 94.28961181640625,
+      "tpiSmallZ": 0.9623250961303711,
+      "tpiLargeZ": 1.846482753753662,
+      "terrain": 1.0
+    },
+    "algorithm": "terrain-1.0.0",
+    "gsi_dem_value": 1916.1500244140625,
+    "gsi_source": {
+      "source": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/14/14131/6741.png",
+      "sha256": "3c5df37169ea92c2a5dea002f9e91b150aed316ec71471cde632160e2f8ce7fc",
+      "retrieved_at": "2026-09-12T01:45:36.096269+00:00"
+    },
+    "elevation_agreement": true,
+    "height_100m": {
+      "north": 1854.8299560546875,
+      "south": 1894.030029296875,
+      "east": 1874.9200439453125,
+      "west": 1925.1400146484375
+    },
+    "geology_source": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/legend.json?point=30.336,130.505",
+    "geology": {
+      "title": "新生代 新第三紀 中新世 バーディガリアン期〜前期ランギアン期,花崗岩 塊状 島弧・大陸",
+      "symbol": "N1_pam_a",
+      "value": "daacc2",
+      "r": 218,
+      "g": 172,
+      "b": 194,
+      "formationAge_ja": "新生代 新第三紀 中新世 バーディガリアン期〜前期ランギアン期",
+      "formationAge_en": "Cenozoic Neogene Miocene Burdigalian - early Langhian",
+      "group_ja": "火成岩",
+      "group_en": "Igneous rocks",
+      "lithology_ja": "花崗岩 塊状 島弧・大陸",
+      "lithology_en": "massive granite island arc & continental"
+    },
+    "vegetation": [
+      {
+        "凡例コード": "210104",
+        "凡例名": "ヤクシマダケ群集",
+        "植生自然度": "10",
+        "植生自然度区分": "自然草原",
+        "植生区分": "ブナクラス域自然植生",
+        "作成年度": "2008"
+      }
+    ],
+    "vegetation_source": "https://www.biodic.go.jp/kiso/vg/tile/veg2024vector/15/28262/13483.pbf"
+  }
+]
