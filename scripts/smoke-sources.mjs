@@ -1,6 +1,7 @@
 import {proxySource} from '../worker/sources.mjs';
 import {decodeTile} from '../dist/gis/vector.mjs';
 const routes=['/api/geology?lat=35.625&lon=139.243','/api/tiles/dem/14/14525/6452.png','/api/tiles/vegetation/13/7263/3226.pbf','/api/tiles/geology/13/7263/3226.png','/api/tiles/std/13/7263/3226.png','/api/tiles/pale/13/7263/3226.png','/api/tiles/seamlessphoto/13/7263/3226.jpg'];
+routes.push('/api/tiles/soil/12/3632/1613.png','/api/tiles/soil-upper/15/29135/12863.png','/api/tiles/soil-lower/15/29135/12863.png');
 const origin=process.env.KINOKO_SITE_ORIGIN;
 // Credentials stay in the process environment and are never forwarded on redirects.
 if(origin&&new URL(origin).protocol!=='https:')throw Error('Deployed checks require HTTPS');

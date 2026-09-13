@@ -2,11 +2,14 @@ import {VEGETATION_GROUPS,normalizeVegetation,normalizeGeology} from './gis/norm
 import {ASPECTS,aspectSector,groundResolution} from './gis/coordinates.mjs';
 import {TERRAIN_NAMES,TERRAIN_COLORS} from './gis/terrain.mjs';
 import {createTerrainClient} from './gis/terrain-client.mjs';
+import {SOIL_LAYERS,SOIL_ATTRIBUTION} from './gis/soil.mjs';
+import {inspectSoil} from './gis/soil-client.mjs';
 const el=id=>document.getElementById(id),japanBounds=[[122,20],[154,46.5]];
 const terrainLabels=['未知','山脊','上部凸坡','中坡','下部凹坡','谷地','平地'];
 const layers=[
  {id:'vegetation',name:'植生',on:true,opacity:.6,type:'fill',legend:Object.values(VEGETATION_GROUPS).map(g=>[g.label,g.color]).concat([['其他林地','#98b67d'],['其他植生 / 土地利用','#d5d7d2']])},
  {id:'geology',name:'地质 / 岩性',on:false,opacity:.6,type:'raster'},
+ ...SOIL_LAYERS.map(l=>({...l,on:false,opacity:.65,type:'raster'})),
  {id:'elevation',name:'海拔',on:false,opacity:.65,type:'raster',legend:[['0 m','#528d75'],['600','#a4b579'],['1,400','#c9b688'],['2,400','#a28d7c'],['3,776','#f8f7ef']]},
  {id:'slope',name:'坡度',on:false,opacity:.7,type:'raster',legend:[['0°','#eef1dc'],['10°','#b5c99b'],['25°','#e6b85c'],['40°','#cd764c'],['60°+','#863b49']]},
  {id:'aspect',name:'坡向',on:false,opacity:.7,type:'raster',legend:ASPECTS.map((v,i)=>[v,['#337abb','#45baba','#68a958','#c6b442','#db8551','#c55770','#906cb4','#636bb3'][i]])},
@@ -34,6 +37,7 @@ function renderLayers(){el('layers').replaceChildren();for(const [i,l]of layers.
  const legend=document.createElement('div');legend.className='legend';
  if(l.legend)for(const [text,color]of l.legend){const s=document.createElement('span'),sw=document.createElement('i');sw.style.background=color;s.append(sw,document.createTextNode(text));legend.append(s);}
  else{const p=document.createElement('p');p.className='meta';p.textContent='GSJ 原始地质配色。点击地图后，地点详情显示该位置颜色、符号、岩性与时代。';legend.append(p);}
+ if(l.note){const p=document.createElement('p');p.className='meta';p.textContent=l.note;legend.append(p);}
  detail.append(legend);box.append(top,row,detail);el('layers').append(box);
 }}
 function applyLayers(){if(!ready)return;for(const l of [...layers].reverse()){
@@ -43,8 +47,9 @@ function applyLayers(){if(!ready)return;for(const l of [...layers].reverse()){
 function refresh(){if(!ready)return;const c=map.getCenter();el('center-coordinates').textContent=`${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}`;el('zoom-readout').textContent=`z${map.getZoom().toFixed(1)}`;
  const errors=[...failures].filter(([id])=>layers.some(l=>(l.id===id||id==='veg'&&l.id==='vegetation')&&l.on));
  if(errors.length){status(`${errors.map(([id])=>layers.find(l=>l.id===id)?.name||'植生').join('、')}数据请求失败；空白区域不能解释为没有该环境。`);return;}
- const terrainOn=layers.some(l=>!['vegetation','geology','base'].includes(l.id)&&l.on);
- status(terrainOn?(map.getZoom()<11?'地形图层：放大至 z11；点选可查询精细地形。':`地形图层：约 ${groundResolution(c.lat,Math.min(14,Math.floor(map.getZoom()))).toFixed(0)} m 网格 · 点查询固定 z14 · 点击查看`):'日本全国 · 点击地图查询地形、植生和地质');
+ const terrainOn=layers.some(l=>['elevation','slope','aspect','curvature','terrain'].includes(l.id)&&l.on);
+ const soilOn=layers.some(l=>l.id.startsWith('soil')&&l.on);
+ status((terrainOn?(map.getZoom()<11?'地形图层：放大至 z11；点选可查询精细地形。':`地形图层：约 ${groundResolution(c.lat,Math.min(14,Math.floor(map.getZoom()))).toFixed(0)} m 网格 · 点查询固定 z14`):'日本全国 · 点击查询地形、植生、地质和土壤')+(soilOn?(map.getZoom()<6?' · 土壤图层需放大至 z6':' · 土壤空白可表示无覆盖；放大不提高源精度'):''));
 }
 function filter(){if(!ready)return;const g=VEGETATION_GROUPS[el('forest').value],f=g?contains(g.words):null;map.setFilter('vegetation',f);map.setFilter('edges',f);}
 function section(target,title,rows,source,extra){const box=el(target);box.replaceChildren();const s=document.createElement('section');s.className='result';const h=document.createElement('h3');h.textContent=title;s.append(h);const dl=document.createElement('dl');for(const [key,value]of rows){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value??'不可用';dl.append(dt,dd);}s.append(dl);if(extra){const d=document.createElement('details'),summary=document.createElement('summary');summary.textContent='原始属性';d.append(summary);const raw=document.createElement('dl');for(const [k,v]of Object.entries(extra)){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=String(v);raw.append(dt,dd);}d.append(raw);s.append(d);}const p=document.createElement('p');p.className='source';p.textContent=source;s.append(p);box.append(s);}
@@ -55,7 +60,7 @@ async function inspect(lon,lat){if(!client)return;if(lon<122||lon>154||lat<20||l
  if(ready){marker?.remove();marker=new maplibregl.Marker({color:'#175c88'}).setLngLat([lon,lat]).addTo(map);}
  el('inspect').hidden=false;el('point-title').textContent='地点信息';el('point-coordinates').textContent=`${lat.toFixed(6)}, ${lon.toFixed(6)}`;
  if(matchMedia('(max-width:760px)').matches)setPanel(false);
- for(const [target,title]of [['terrain-result','地形'],['vegetation-result','植生'],['geology-result','地质']])section(target,title,[['状态','正在查询…']],'');
+ for(const [target,title]of [['terrain-result','地形'],['vegetation-result','植生'],['geology-result','地质'],['soil-result','土壤']])section(target,title,[['状态','正在查询…']],'');
  const current=()=>id===inspectionId;
  const terrain=client.request('point',{lon,lat},signal).then(d=>{if(!current())return;
  section('terrain-result','地形',[['海拔',fmt(d.elevation,'m')],['坡度',fmt(d.slope,'°')],['坡向',d.aspect===null?(d.slope===null?'不可用':'近水平 / 未定义'):aspectSector(d.aspect)],['坡向角',fmt(d.aspect,'°')],['地形位置',terrainLabels[d.terrain||0]],['曲率',fmt(d.curvature,'m⁻¹',5)],['TPI 75 / 350 m',`${fmt(d.tpiSmall,'m')} / ${fmt(d.tpiLarge,'m')}`]],`GSI DEM10B → Japan Environmental Atlas ${d.algorithm} · z14 / 约 ${d.resolution.toFixed(1)} m 像元。地形分类为待验证派生值。`);
@@ -66,12 +71,18 @@ async function inspect(lon,lat){if(!client)return;if(lon<122||lon>154||lat<20||l
  const geology=fetch(`/api/geology?lat=${lat}&lon=${lon}`,{signal}).then(async r=>{if(!r.ok)throw Error(`地质请求失败 (${r.status})`);return r.json();}).then(raw=>{if(!current())return;const g=normalizeGeology(raw);section('geology-result','地质',[['原始符号',g.original||'该点无地质记录'],['岩性',g.lithology],['归一分组',g.original?g.normalized:'不可用'],['地质时代',g.age]],'産総研地質調査総合センター · 20万分の1日本シームレス地質図V2 · 原始版。比例尺 1:200,000，不代表林地微尺度边界。',raw);
  if(raw.value){const sw=document.createElement('span');sw.className='geology-chip';sw.style.cssText=`display:inline-block;width:20px;height:12px;margin-left:8px;border:1px solid #0003;background:#${/^[\da-f]{6}$/i.test(raw.value)?raw.value:'ffffff'}`;el('geology-result').querySelector('h3').append(sw);}
  }).catch(e=>{if(current()&&e.name!=='AbortError')failure('geology-result','地质',e);});
- await Promise.allSettled([terrain,vegetation,geology]);
+ const soil=inspectSoil(lon,lat,signal).then(d=>{if(!current())return;
+ const type=d.soil,upper=d['soil-upper'],lower=d['soil-lower'];
+ section('soil-result','土壤',[['原始类型',type.label],['分类代码',type.code],['土壤群',type.group],['表层质地',upper.label],['下层质地',lower.label],['现场土壤结构','未接入实测数据']],`${SOIL_ATTRIBUTION} · CC BY 4.0。类型：全国 1:200,000 图，固定 z12；质地：覆盖有限，固定 z15。按官方编码表读取地图像元，边界未匹配时不推测。表层/下层未指定统一厘米深度。`,Object.fromEntries(Object.values(d).map(v=>[SOIL_LAYERS.find(l=>l.id===v.id).name,`${v.status} · z${v.z}/${v.x}/${v.y} · 像元约 ${v.resolution.toFixed(1)} m（非测量精度）${v.encodedCode?' · 编码 '+v.encodedCode:''}`])));
+ const a=document.createElement('a');a.href=`https://soil-inventory.rad.naro.go.jp/figure.html?lat=${lat}&lng=${lon}&zoom=12`;a.target='_blank';a.rel='noopener';a.textContent='在 NARO 原图核对';el('soil-result').querySelector('section').append(a);
+ }).catch(e=>{if(current()&&e.name!=='AbortError')failure('soil-result','土壤',e);});
+ await Promise.allSettled([terrain,vegetation,geology,soil]);
 }
 async function init(){try{load();renderLayers();client=createTerrainClient();
  maplibregl.addProtocol('terrain',async(params,abortController)=>{const m=params.url.match(/^terrain:\/\/(elevation|slope|aspect|curvature|terrain)\/(\d+)\/(\d+)\/(\d+)\.png$/);if(!m)throw Error('Invalid terrain request');const [,kind,z,x,y]=m;return {data:await client.request('tile',{kind,z:Number(z),x:Number(x),y:Number(y)},abortController.signal)};});
  const sources={base:{type:'raster',tiles:[`${location.origin}/api/tiles/pale/{z}/{x}/{y}.png`],tileSize:256,minzoom:2,maxzoom:18,attribution:'<a href="https://maps.gsi.go.jp/development/ichiran.html">国土地理院</a>'},veg:{type:'vector',tiles:[`${location.origin}/api/tiles/vegetation/{z}/{x}/{y}.pbf`],minzoom:5,maxzoom:15,bounds:[122,20,154,46.5],attribution:'出典：<a href="https://www.biodic.go.jp/">環境省 現存植生図2024</a> / Japan Environmental Atlas 加工'},geology:{type:'raster',tiles:[`${location.origin}/api/tiles/geology/{z}/{x}/{y}.png`],tileSize:256,maxzoom:13,bounds:[122,20,154,46.5],attribution:'<a href="https://gbank.gsj.jp/seamless/">20万分の1日本シームレス地質図V2（©産総研地質調査総合センター）</a>'}};
  const mapLayers=[{id:'background',type:'background',paint:{'background-color':'#e0e9e6'}},{id:'base',type:'raster',source:'base'},{id:'geology',type:'raster',source:'geology',layout:{visibility:'none'}}];
+ for(const layer of SOIL_LAYERS){sources[layer.id]={type:'raster',tiles:[`${location.origin}/api/tiles/${layer.id}/{z}/{x}/{y}.png`],tileSize:256,minzoom:6,maxzoom:layer.zoom,bounds:[122,20,154,46.5],attribution:`<a href="https://soil-inventory.rad.naro.go.jp/">${SOIL_ATTRIBUTION}</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>`};mapLayers.push({id:layer.id,type:'raster',source:layer.id,minzoom:6,layout:{visibility:'none'},paint:{'raster-resampling':'nearest','raster-fade-duration':0}});}
  for(const kind of ['elevation','slope','aspect','curvature','terrain']){sources[kind]={type:'raster',tiles:[`terrain://${kind}/{z}/{x}/{y}.png`],tileSize:256,minzoom:11,maxzoom:14,bounds:[122,20,154,46.5],attribution:'地形：国土地理院 DEM / Japan Environmental Atlas 派生'};mapLayers.push({id:kind,type:'raster',source:kind,minzoom:11,layout:{visibility:'none'},paint:{'raster-resampling':'nearest','raster-fade-duration':0}});}
  mapLayers.push({id:'vegetation',type:'fill',source:'veg','source-layer':'veg2024',paint:{'fill-color':palette,'fill-opacity':.6}},{id:'edges',type:'line',source:'veg','source-layer':'veg2024',minzoom:12,paint:{'line-color':'#345740','line-width':.5,'line-opacity':.5}});
  map=new maplibregl.Map({container:'map',style:{version:8,sources,layers:mapLayers},center:[139.243,35.625],zoom:13,minZoom:3,maxZoom:18,maxBounds:[[120,18],[156,48]],maxTileCacheSize:50,renderWorldCopies:false});

@@ -2,7 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';import {exi
 test('built Worker serves all application modules and rejects unknown routes',async t=>{
  if(!existsSync(new URL('../dist/server/index.js',import.meta.url))){t.skip('Run npm run build first');return;}
  const {default:worker}=await import('../dist/server/index.js');
- for(const path of ['/','/app.js','/styles.css','/gis/terrain-worker.mjs','/maplibre-gl.js']){
+ for(const path of ['/','/app.js','/styles.css','/gis/terrain-worker.mjs','/gis/soil.mjs','/gis/soil-client.mjs','/gis/soil-catalog.mjs','/maplibre-gl.js']){
   const r=await worker.fetch(new Request('https://kinoko.test'+path));assert.equal(r.status,200);assert.ok((await r.arrayBuffer()).byteLength>100);
  }
  const invalid=await worker.fetch(new Request('https://kinoko.test/api/proxy?url=https://example.com'));assert.equal(invalid.status,400);

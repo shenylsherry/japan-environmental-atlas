@@ -10,7 +10,7 @@ GitHub synchronization was not established at that audit checkpoint.
 ## Current product scope
 
 The current product is **Japan Environmental Atlas / 日本自然環境アトラス**,
-a general-purpose map viewer for layered terrain, vegetation and geology exploration.
+a general-purpose map viewer for layered terrain, vegetation, geology and soil exploration.
 Canonical GitHub repository: https://github.com/shenylsherry/japan-environmental-atlas.
 The earlier audit below records conditions before GitHub publication; that historical
 access blocker has been resolved. The existing public Site identity and URL remain.
@@ -46,7 +46,7 @@ GSJ API 1.3.1 supplies raster visualization and independent point legend queries
 GSI DEM10B PNG z1–14 is the terrain master. Decode signed centimetres, preserve nodata.
 
 ## Phase 1 runtime
-Browser → viewport tiles → official-source adapter → GSI/MOE/GSJ.
+Browser → viewport tiles → official-source adapter → GSI/MOE/GSJ/NARO.
 A dedicated worker derives terrain from haloed GSI DEM tiles, never blocking the UI.
 Point queries always use z14 DEM and a z15 vegetation polygon containment test,
 independent of visible layer opacity/filter/zoom. GSJ point coordinates are latitude,
@@ -54,6 +54,14 @@ longitude; tile URL order is z/y/x. Display original class and conservative norm
 Views below z11 show terrain as unavailable-at-this-zoom; analysis retains useful local
 resolution at z14. Overview slope/terrain are explicitly scale-dependent, not survey data.
 The proxy is implemented as a small Cloudflare-compatible ESM Worker. A deterministic build embeds the small frontend assets; Vite is only the development server. No weather or biological score is fabricated. Layer order and opacity are device-local.
+
+Soil integration adds three NARO raster layers and independent fixed-zoom pixel
+queries. National type stops at z12 to retain mountain coverage; texture samples use
+z15 with explicit gaps. `soil-client.mjs` samples three tiny Canvas regions without
+waiting for terrain computations, then closes bitmaps. `soil.mjs` decodes only exact
+official palette keys. The roughly 31 KB catalog contains factual attributes, never
+national geometry. Invalid/missing/unknown values stay distinct; no measured physical
+properties or ecological interpretations are synthesized. See [soil method](soil-method.md).
 
 ## Preprocessing / later migration
 Python tile batches cache official DEMs, derive continuous elevation/slope/aspect,

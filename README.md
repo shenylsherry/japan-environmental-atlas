@@ -7,13 +7,13 @@
 > First GitHub publication: 2026-09-12; project subsequently renamed from Kinoko Map Japan.
 > This application snapshot comes from source commit `ff8fa332b1eda13705659d71ed22414657db8dc9`. The repository retains its existing MIT LICENSE and initial commit. Original development history remains in the existing Site source repository; the audit and phase reports below describe the earlier implementation checkpoints, including the former GitHub access limitation.
 
-A general-purpose atlas for exploring Japan's terrain, vegetation and geology together.
+A general-purpose atlas for exploring Japan's terrain, vegetation, geology and soil together.
 Use independent layer visibility, ordering, opacity and point inspection for nature
 observation, hiking preparation, ecological surveys and geography learning.
 
 The core platform provides environmental information, not a species prediction.
 Authoritative source attributes remain separate from DEM-derived variables and from
-any future purpose-specific interpretation. 
+any future purpose-specific interpretation.
 
 Implemented: nationwide tiled browsing, layer controls, original attribute inspection,
 DEM derivatives and reproducible regional preprocessing. Full AND spatial intersections,
@@ -27,6 +27,8 @@ requires full WebGL map rendering and physical iPhone verification; see
 - Small Cloudflare-compatible Worker serves the static assets and a strict official
   data proxy. MOE cross-origin restrictions require the same-origin adapter.
 - Nationwide MOE vector tiles, GSJ raster tiles + independent legend queries.
+- NARO nationwide soil type and surface/subsurface texture tiles, with independent
+  point sampling, original classification, explicit coverage gaps and source credit.
 - Dedicated browser worker reads only needed GSI DEM tiles, derives continuous
   variables and PNG overlays; bounded memory and request concurrency.
 - Python regional processing produces eleven-band COGs, logs, hashes and resumable
@@ -68,6 +70,11 @@ allow checking CPU/Canvas calculations; production never uses these fixtures.
 - Terrain overlays appear at z11+. Point terrain queries always use z14; aspect on
   near-flat land is undefined. Display overzoom does not improve source precision.
 - 定位 requests GPS once, only when pressed. It does not start continuous tracking.
+- In 图层, enable **土壤类型 · 全国**, **土壤质地 · 表层** or **土壤质地 · 下层**.
+  Each has opacity, order and legend controls. Soil type stays on the national
+  1:200,000 map when enlarged; texture coverage is limited. The point panel shows
+  all three even when hidden. These are mapped classes, not measured soil structure,
+  pH or current moisture. Details: [soil method and validation](docs/soil-method.md).
 
 ## Preprocess and build tiles
 
@@ -95,6 +102,7 @@ npm run test:terrain
 python3 verify-data.py
 node --use-env-proxy scripts/smoke-sources.mjs
 python3 scripts/terrain/validate_locations.py
+python3 scripts/soil/validate_sources.py
 ```
 
 The smoke and location commands require external official services; the unit suite
@@ -130,7 +138,7 @@ KINOKO_SITE_ORIGIN=https://kinoko-map-japan.workspace-828684.chatgpt.site node -
 The live Site is public and needs no access token. For a separately configured private
 Site, `KINOKO_SITE_TOKEN` accepts its authorized access token; never save it in Git.
 The check sends it only to the configured origin, does not follow redirects, and
-prints no credentials. All seven
+prints no credentials. All ten
 routes must return valid PNG/JPEG, decodable vegetation PBF or GSJ legend JSON.
 The Worker uses HTTP response caching without requesting the restricted default cache.
 
@@ -146,6 +154,10 @@ local layer-preference keys and old-cache cleanup prefixes remain compatible.
 - DEM10B has source-specific coverage/nodata; source service failures remain visible.
 - Geology's 1:200,000 scale is much coarser than terrain; it does not establish
   parcel-scale bedrock or soil chemistry. Vegetation map class is not a tree inventory.
+- NARO soil type is also regional, at 1:200,000. Texture has gaps, especially in
+  mountain areas; a uniform numeric sampling depth is not established. Unrecognized
+  raster colors remain unclassified. No physical soil-structure or chemistry values
+  are fabricated. Catalog regeneration: `python3 scripts/soil/update_catalog.py`.
 - Curvature is noise-sensitive; multiscale position labels are provisional, not a
   field-validated terrain taxonomy. No biological rules are embedded in them.
 - Lower-zoom terrain is scale-dependent. A later filter service must use a fixed

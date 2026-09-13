@@ -109,6 +109,24 @@ is not a physical iPhone Safari or GPS test.
 
 ## Remaining acceptance protocol
 
+### Soil integration — 2026-09-12 checks
+
+- Build succeeded; 22 JavaScript tests and 5 Python tests passed, including seven
+  new soil cases for coordinate sampling, original palettes, source bounds,
+  missing/error responses, partial source failure and cancellation.
+- Seven live NARO samples across Takao, Asahidake, Yakushima, Okinawa and Tsukuba
+  matched their recorded SHA-256 and exact sampled pixels. Soil type uses z12;
+  surface/subsurface texture uses z15. A Tsukuba national-map color absent from
+  the official palette remains unclassified; both texture layers return 壌質（中粒質）.
+- The local adapter's ten source routes returned HTTP 200 with valid payloads:
+  the seven existing GSI/MOE/GSJ routes and three new NARO routes.
+- The transparent nodata PNG was decoded using Pillow: 256×256, all RGBA zero.
+- These checks verify source transport and calculations, not WebGL compositing or
+  physical iPhone behavior. Existing browser/device limitations still apply.
+
+The full soil method, official URLs, expected classes and reproducible commands are
+in [soil-method.md](soil-method.md). No field soil-structure measurements are claimed.
+
 On a WebGL-capable desktop and actual iPhone Safari:
 
 1. Load the deployed map; confirm GSI plus precise MOE polygon boundaries, not circles.

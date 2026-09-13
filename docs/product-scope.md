@@ -16,6 +16,7 @@ Japan. A change of identity does not change the precision or interpretation of i
 | Responsibility | Current state |
 | --- | --- |
 | Japan-wide tiled basemaps, vegetation and geology | Implemented |
+| Nationwide soil type and surface/subsurface texture | Implemented using NARO tiles; texture coverage and classification gaps remain explicit |
 | Layer visibility, opacity, ordering and legends | Implemented |
 | Point inspection with original attributes and source attribution | Implemented |
 | DEM-derived elevation, slope, downhill aspect, curvature and terrain position | Implemented; terrain classes remain provisional |

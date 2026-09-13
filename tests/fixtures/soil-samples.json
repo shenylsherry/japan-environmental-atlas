@@ -1,0 +1,184 @@
+[
+  {
+    "name": "takao",
+    "lat": 35.625,
+    "lon": 139.243,
+    "z": 12,
+    "x": 3632,
+    "y": 1613,
+    "pixel": [
+      70,
+      179
+    ],
+    "rgba": [
+      34,
+      140,
+      34,
+      255
+    ],
+    "sha256": "f6dd4ec059061dbb6ae88ee97462d2e574e808e5e0a1bc7e526584cda24fddcd",
+    "url": "https://soil-inventory.rad.naro.go.jp/tile/figure/12/3632/1613.png",
+    "layer": "soil",
+    "expected": {
+      "status": "ok",
+      "label": "褐色森林土"
+    },
+    "checked": "2026-09-12"
+  },
+  {
+    "name": "asahidake",
+    "lat": 43.67,
+    "lon": 142.851,
+    "z": 12,
+    "x": 3673,
+    "y": 1494,
+    "pixel": [
+      83,
+      151
+    ],
+    "rgba": [
+      245,
+      255,
+      0,
+      255
+    ],
+    "url": "https://soil-inventory.rad.naro.go.jp/tile/figure/12/3673/1494.png",
+    "sha256": "217beb61c519368b45a07efc213d6561048e2c895a21b05c73a781af8ef74ada",
+    "layer": "soil",
+    "expected": {
+      "status": "ok",
+      "label": "普通陸成未熟土"
+    },
+    "checked": "2026-09-12"
+  },
+  {
+    "name": "yakushima",
+    "lat": 30.336,
+    "lon": 130.505,
+    "z": 12,
+    "x": 3532,
+    "y": 1685,
+    "pixel": [
+      219,
+      124
+    ],
+    "rgba": [
+      145,
+      90,
+      68,
+      255
+    ],
+    "url": "https://soil-inventory.rad.naro.go.jp/tile/figure/12/3532/1685.png",
+    "sha256": "c8e22f1105eeb568668a559a776723604ffabfb94a84136d1449440ed5496cfe",
+    "layer": "soil",
+    "expected": {
+      "status": "ok",
+      "label": "普通非アロフェン質黒ボク土"
+    },
+    "checked": "2026-09-12"
+  },
+  {
+    "name": "okinawa",
+    "lat": 26.5,
+    "lon": 127.9,
+    "z": 12,
+    "x": 3503,
+    "y": 1735,
+    "pixel": [
+      55,
+      32
+    ],
+    "rgba": [
+      245,
+      255,
+      0,
+      255
+    ],
+    "url": "https://soil-inventory.rad.naro.go.jp/tile/figure/12/3503/1735.png",
+    "sha256": "ec0a02f89656d87260615c1f2a36762441afaa4ec8c66b593900d6d9c11d2dd9",
+    "layer": "soil",
+    "expected": {
+      "status": "ok",
+      "label": "普通陸成未熟土"
+    },
+    "checked": "2026-09-12"
+  },
+  {
+    "name": "tsukuba",
+    "lat": 36.032116,
+    "lon": 140.087325,
+    "z": 12,
+    "x": 3641,
+    "y": 1607,
+    "pixel": [
+      225,
+      253
+    ],
+    "rgba": [
+      138,
+      68,
+      0,
+      255
+    ],
+    "url": "https://soil-inventory.rad.naro.go.jp/tile/figure/12/3641/1607.png",
+    "sha256": "fc3220e85bd9bdede2f477bf0a0cf09b4712b30283b0ae584bea64da8d1639a8",
+    "layer": "soil",
+    "expected": {
+      "status": "unmatched",
+      "label": "边界像元 / 未匹配，无法确定"
+    },
+    "checked": "2026-09-12"
+  },
+  {
+    "name": "tsukuba",
+    "lat": 36.032116,
+    "lon": 140.087325,
+    "z": 15,
+    "x": 29135,
+    "y": 12863,
+    "pixel": [
+      15,
+      233
+    ],
+    "rgba": [
+      255,
+      255,
+      0,
+      255
+    ],
+    "url": "https://soil-inventory.rad.naro.go.jp/tile/soil_properties_upper/15/29135/12863.png",
+    "sha256": "bd8c7670ac4456c39e3063db6939775e3e0a05c706a3a9cba164d1835d968549",
+    "layer": "soil-upper",
+    "expected": {
+      "status": "ok",
+      "label": "壌質（中粒質）"
+    },
+    "checked": "2026-09-12"
+  },
+  {
+    "name": "tsukuba",
+    "lat": 36.032116,
+    "lon": 140.087325,
+    "z": 15,
+    "x": 29135,
+    "y": 12863,
+    "pixel": [
+      15,
+      233
+    ],
+    "rgba": [
+      255,
+      255,
+      0,
+      255
+    ],
+    "url": "https://soil-inventory.rad.naro.go.jp/tile/soil_properties_lower/15/29135/12863.png",
+    "sha256": "86efc843e5400f1fdb3fcf8d28f94a873bc99ae35599367889ef9cb915a78a65",
+    "layer": "soil-lower",
+    "expected": {
+      "status": "ok",
+      "label": "壌質（中粒質）"
+    },
+    "checked": "2026-09-12"
+  }
+]

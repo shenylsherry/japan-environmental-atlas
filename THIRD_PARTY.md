@@ -8,3 +8,9 @@
   optional offline Python preprocessing dependencies, not bundled in the browser.
 
 Dataset attribution and terms are separate: docs/data-sources.md.
+
+- NARO Japanese Soil Inventory factual soil class / texture palette records in
+  `dist/gis/soil-catalog.mjs`: derived from published soil map lookup tables.
+  Credit 農研機構日本土壌インベントリー（NARO, Japanese Soil Inventory）;
+  released digital soil maps CC BY 4.0. Source URLs and hashes are embedded in
+  that generated catalog. Original application JavaScript is not bundled.

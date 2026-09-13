@@ -28,3 +28,11 @@ EPSG:4326. Before any future polygon/raster alignment, inspect the actual native
 geographic CRS/datum from its supplied metadata. Do not assign an assumed CRS to
 shapefiles. Local metre spacing for derivatives is cos(latitude)-corrected Mercator;
 this is a spherical approximation, not a national conformal distance standard.
+
+Soil data: runtime uses NARO viewport tiles, never a national polygon download.
+`scripts/soil/update_catalog.py` regenerates the small factual class/texture lookup
+table with source hashes. `scripts/soil/validate_sources.py` caches seven validation
+tiles under ignored `data/cache/soil-validation`; `--refresh` checks current sources.
+Only metadata and expected sample pixels are kept in `tests/fixtures/soil-samples.json`.
+Future regional soil polygon packages must use official downloads, inspect their
+native CRS, preserve original classes and credit NARO. See `docs/soil-method.md`.
