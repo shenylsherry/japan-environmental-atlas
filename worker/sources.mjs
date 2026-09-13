@@ -3,7 +3,10 @@ export const OFFICIAL = Object.freeze({
  vegetation: 'https://www.biodic.go.jp/kiso/vg/tile/veg2024vector',
  gsi: 'https://cyberjapandata.gsi.go.jp/xyz',
  geology: 'https://gbank.gsj.jp/seamless/v2/api/1.3.1',
+ soil: 'https://soil-inventory.rad.naro.go.jp/tile',
 });
+const SOIL_PATHS=Object.freeze({'soil':'figure','soil-upper':'soil_properties_upper','soil-lower':'soil_properties_lower'});
+function transparentTile(){return Uint8Array.from(atob('iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAABFUlEQVR4nO3BMQEAAADCoPVP7WsIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMBPAABPO1TCQAAAABJRU5ErkJggg=='),c=>c.charCodeAt(0));}
 export function sourceRequest(input) {
  const u = new URL(input), p = u.pathname;
  if(p === '/api/geology') {
@@ -12,13 +15,15 @@ export function sourceRequest(input) {
   if(!Number.isFinite(lat)||!Number.isFinite(lon)||lat<20||lat>46.5||lon<122||lon>154) throw Error('Outside Japan query bounds');
   return {url:`${OFFICIAL.geology}/legend.json?point=${lat},${lon}`,type:'application/json',ttl:86400};
  }
- const m=p.match(/^\/api\/tiles\/(vegetation|dem|geology|pale|std|seamlessphoto)\/(\d+)\/(\d+)\/(\d+)\.(pbf|png|jpg)$/);
+ const m=p.match(/^\/api\/tiles\/(vegetation|dem|geology|pale|std|seamlessphoto|soil|soil-upper|soil-lower)\/(\d+)\/(\d+)\/(\d+)\.(pbf|png|jpg)$/);
  if(!m) throw Error('Unknown source route');
  const [,kind,zs,xs,ys,ext]=m, z=Number(zs), x=Number(xs), y=Number(ys);
- const max=kind==='vegetation'?15:kind==='dem'?14:kind==='geology'?13:18;
- const min=kind==='vegetation'?5:kind==='dem'?1:kind==='geology'?0:2;
+ const soil=Object.hasOwn(SOIL_PATHS,kind);
+ const max=soil?(kind==='soil'?12:15):kind==='vegetation'?15:kind==='dem'?14:kind==='geology'?13:18;
+ const min=soil?6:kind==='vegetation'?5:kind==='dem'?1:kind==='geology'?0:2;
  if(z<min||z>max||x>=2**z||y>=2**z) throw Error('Invalid tile coordinates');
  if(ext !== (kind==='vegetation'?'pbf':kind==='seamlessphoto'?'jpg':'png')) throw Error('Invalid tile format');
+ if(soil)return {url:`${OFFICIAL.soil}/${SOIL_PATHS[kind]}/${z}/${x}/${y}.png`,type:'image/png',ttl:86400,soil:true};
  const url=kind==='vegetation'?`${OFFICIAL.vegetation}/${z}/${x}/${y}.pbf`:kind==='geology'?`${OFFICIAL.geology}/tiles/${z}/${y}/${x}.png?layer=g`: `${OFFICIAL.gsi}/${kind==='dem'?'dem_png':kind}/${z}/${x}/${y}.${ext}`;
  return {url,type:kind==='vegetation'?'application/x-protobuf':kind==='seamlessphoto'?'image/jpeg':'image/png',ttl:86400};
 }
@@ -29,10 +34,14 @@ export async function proxySource(request, env, ctx) {
  // bounded browser terrain cache are sufficient; never depend on platform cache APIs.
  try {
   const r=await fetch(source.url,{signal:AbortSignal.timeout(20000),headers:{Accept:source.type}});
+  // NARO omits some ocean/non-covered tiles. Their absence is transparent nodata,
+  // while timeouts, permission errors and other failures still return errors.
+  if(source.soil&&r.status===404)return new Response(transparentTile(),{headers:{'Content-Type':'image/png','Cache-Control':`public,max-age=${source.ttl}`,'X-Soil-NoData':'missing-tile','X-Data-Source':source.url,'X-Content-Type-Options':'nosniff'}});
   if(!r.ok) return Response.json({error:'Official source unavailable',source:source.url,status:r.status},{status:r.status===404?404:502,headers:{'Cache-Control':'no-store'}});
   // Never forward cookies or source-specific security/CORS headers.
   const b=await r.arrayBuffer();
   if(b.byteLength>8*1024*1024) throw Error('Tile exceeds 8 MB limit');
+  if(source.soil){const bytes=new Uint8Array(b);if(bytes.length<24||![137,80,78,71,13,10,26,10].every((v,i)=>bytes[i]===v)||new DataView(b).getUint32(16)!==256||new DataView(b).getUint32(20)!==256)throw Error('Invalid official soil PNG');}
   const out=new Response(b,{headers:{'Content-Type':source.type,'Cache-Control':`public,max-age=${source.ttl}`,'X-Data-Source':source.url,'X-Content-Type-Options':'nosniff'}});
   return out;
  } catch(e){return Response.json({error:'Official source request failed',detail:e.message},{status:502,headers:{'Cache-Control':'no-store'}});}
